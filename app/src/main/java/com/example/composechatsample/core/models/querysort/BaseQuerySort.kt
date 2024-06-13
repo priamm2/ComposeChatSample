@@ -1,0 +1,57 @@
+package com.example.composechatsample.core.models.querysort
+
+import com.example.composechatsample.core.models.querysort.internal.CompositeComparator
+import com.example.composechatsample.core.models.querysort.internal.SortAttribute
+import com.example.composechatsample.core.models.querysort.internal.SortSpecification
+import com.example.composechatsample.core.models.querysort.QuerySorter
+import com.example.composechatsample.core.models.querysort.SortDirection
+
+abstract class BaseQuerySort<T : Any> : QuerySorter<T> {
+
+    override var sortSpecifications: List<SortSpecification<T>> = emptyList()
+
+    override val comparator: Comparator<in T>
+        get() = CompositeComparator(sortSpecifications.map { it.comparator })
+
+    private val SortSpecification<T>.comparator: Comparator<T>
+        get() {
+            return when (this.sortAttribute) {
+                is SortAttribute.FieldSortAttribute<T> -> comparatorFromFieldSort(this.sortAttribute, sortDirection)
+
+                is SortAttribute.FieldNameSortAttribute<T> ->
+                    comparatorFromNameAttribute(this.sortAttribute, sortDirection)
+            }
+        }
+
+    public abstract fun comparatorFromFieldSort(
+        firstSort: SortAttribute.FieldSortAttribute<T>,
+        sortDirection: SortDirection,
+    ): Comparator<T>
+
+    public abstract fun comparatorFromNameAttribute(
+        name: SortAttribute.FieldNameSortAttribute<T>,
+        sortDirection: SortDirection,
+    ): Comparator<T>
+
+    public override fun toDto(): List<Map<String, Any>> = sortSpecifications.map { sortSpec ->
+        listOf(
+            QuerySorter.KEY_FIELD_NAME to sortSpec.sortAttribute.name,
+            QuerySorter.KEY_DIRECTION to sortSpec.sortDirection.value,
+        ).toMap()
+    }
+
+    override fun hashCode(): Int = sortSpecifications.hashCode()
+
+    override fun toString(): String = sortSpecifications.toString()
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as BaseQuerySort<*>
+
+        if (sortSpecifications != other.sortSpecifications) return false
+
+        return true
+    }
+}
