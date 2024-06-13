@@ -1,5 +1,6 @@
 package com.example.composechatsample.core
 
+import com.example.composechatsample.core.errors.ChatErrorCode
 import com.example.composechatsample.core.errors.ChatErrorDetail
 import com.example.composechatsample.core.events.ChatEvent
 import com.example.composechatsample.core.events.ConnectedEvent
@@ -10,6 +11,9 @@ import com.example.composechatsample.core.state.NetworkStateProvider
 import com.example.composechatsample.core.token.TokenManager
 import com.example.composechatsample.log.taggedLogger
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeout
 import kotlin.coroutines.EmptyCoroutineContext
@@ -32,7 +36,7 @@ internal open class ChatSocket(
     private var socketStateObserverJob: Job? = null
     private val healthMonitor = HealthMonitor(
         userScope = userScope,
-        checkCallback = { (chatSocketStateService.currentState as? State.Connected)?.event?.let(::sendEvent) },
+        checkCallback = { (chatSocketStateService.currentState as? ChatSocketStateService.State.Connected)?.event?.let(::sendEvent) },
         reconnectCallback = { chatSocketStateService.onWebSocketEventLost() },
     )
     private val lifecycleHandler = object : LifecycleHandler {
@@ -80,7 +84,7 @@ internal open class ChatSocket(
             chatSocketStateService.observer { state ->
                 logger.i { "[onSocketStateChanged] state: $state" }
                 when (state) {
-                    is State.RestartConnection -> {
+                    is ChatSocketStateService.State.RestartConnection -> {
                         connectionConf?.let { chatSocketStateService.onReconnect(it, false) } ?: run {
                             logger.e { "[onSocketStateChanged] #reconnect; connectionConf is null" }
                             clientDebugger?.onNonFatalErrorOccurred(
@@ -91,11 +95,11 @@ internal open class ChatSocket(
                             )
                         }
                     }
-                    is State.Connected -> {
+                    is ChatSocketStateService.State.Connected -> {
                         healthMonitor.ack()
                         callListeners { listener -> listener.onConnected(state.event) }
                     }
-                    is State.Connecting -> {
+                    is ChatSocketStateService.State.Connecting -> {
                         callListeners { listener -> listener.onConnecting() }
                         when (state.connectionType) {
                             ChatSocketStateService.ConnectionType.INITIAL_CONNECTION ->
@@ -106,31 +110,31 @@ internal open class ChatSocket(
                                 reconnect(state.connectionConf.asReconnectionConf())
                         }
                     }
-                    is State.Disconnected -> {
+                    is ChatSocketStateService.State.Disconnected -> {
                         when (state) {
-                            is State.Disconnected.DisconnectedByRequest -> {
+                            is ChatSocketStateService.State.Disconnected.DisconnectedByRequest -> {
                                 streamWebSocket?.close()
                                 healthMonitor.stop()
                                 userScope.launch { disposeObservers() }
                             }
-                            is State.Disconnected.NetworkDisconnected -> {
+                            is ChatSocketStateService.State.Disconnected.NetworkDisconnected -> {
                                 streamWebSocket?.close()
                                 healthMonitor.stop()
                             }
-                            is State.Disconnected.Stopped -> {
+                            is ChatSocketStateService.State.Disconnected.Stopped -> {
                                 streamWebSocket?.close()
                                 healthMonitor.stop()
                                 disposeNetworkStateObserver()
                             }
-                            is State.Disconnected.DisconnectedPermanently -> {
+                            is ChatSocketStateService.State.Disconnected.DisconnectedPermanently -> {
                                 streamWebSocket?.close()
                                 healthMonitor.stop()
                                 userScope.launch { disposeObservers() }
                             }
-                            is State.Disconnected.DisconnectedTemporarily -> {
+                            is ChatSocketStateService.State.Disconnected.DisconnectedTemporarily -> {
                                 healthMonitor.onDisconnected()
                             }
-                            is State.Disconnected.WebSocketEventLost -> {
+                            is ChatSocketStateService.State.Disconnected.WebSocketEventLost -> {
                                 streamWebSocket?.close()
                                 connectionConf?.let { chatSocketStateService.onReconnect(it, false) }
                             }
@@ -223,20 +227,20 @@ internal open class ChatSocket(
     }
     internal fun sendEvent(event: ChatEvent): Boolean = streamWebSocket?.send(event) ?: false
 
-    internal fun isConnected(): Boolean = chatSocketStateService.currentState is State.Connected
+    internal fun isConnected(): Boolean = chatSocketStateService.currentState is ChatSocketStateService.State.Connected
 
     internal suspend fun awaitConnection(timeoutInMillis: Long = DEFAULT_CONNECTION_TIMEOUT) {
-        awaitState<State.Connected>(timeoutInMillis)
+        awaitState<ChatSocketStateService.State.Connected>(timeoutInMillis)
     }
 
-    internal suspend inline fun <reified T : State> awaitState(timeoutInMillis: Long) {
+    internal suspend inline fun <reified T : ChatSocketStateService.State> awaitState(timeoutInMillis: Long) {
         withTimeout(timeoutInMillis) {
             chatSocketStateService.currentStateFlow.first { it is T }
         }
     }
 
     internal fun connectionIdOrError(): String = when (val state = chatSocketStateService.currentState) {
-        is State.Connected -> state.event.connectionId
+        is ChatSocketStateService.State.Connected -> state.event.connectionId
         else -> error("This state doesn't contain connectionId")
     }
 
@@ -266,15 +270,15 @@ internal open class ChatSocket(
         }
     }
 
-    private val State.Disconnected.cause
+    private val ChatSocketStateService.State.Disconnected.cause
         get() = when (this) {
-            is State.Disconnected.DisconnectedByRequest,
-            is State.Disconnected.Stopped,
+            is ChatSocketStateService.State.Disconnected.DisconnectedByRequest,
+            is ChatSocketStateService.State.Disconnected.Stopped,
             -> DisconnectCause.ConnectionReleased
-            is State.Disconnected.NetworkDisconnected -> DisconnectCause.NetworkNotAvailable
-            is State.Disconnected.DisconnectedPermanently -> DisconnectCause.UnrecoverableError(error)
-            is State.Disconnected.DisconnectedTemporarily -> DisconnectCause.Error(error)
-            is State.Disconnected.WebSocketEventLost -> DisconnectCause.WebSocketNotAvailable
+            is ChatSocketStateService.State.Disconnected.NetworkDisconnected -> DisconnectCause.NetworkNotAvailable
+            is ChatSocketStateService.State.Disconnected.DisconnectedPermanently -> DisconnectCause.UnrecoverableError(error)
+            is ChatSocketStateService.State.Disconnected.DisconnectedTemporarily -> DisconnectCause.Error(error)
+            is ChatSocketStateService.State.Disconnected.WebSocketEventLost -> DisconnectCause.WebSocketNotAvailable
         }
 
     private fun ConnectionErrorEvent.toNetworkError(): Error.NetworkError {

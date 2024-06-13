@@ -28,9 +28,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.composechatsample.R
 import com.example.composechatsample.core.models.Channel
 import com.example.composechatsample.core.models.Message
+import com.example.composechatsample.screen.components.ChannelListHeader
 import com.example.composechatsample.ui.theme.ChatTheme
 import com.example.composechatsample.viewModel.ChannelListViewModel
 import com.example.composechatsample.viewModel.ChannelViewModelFactory

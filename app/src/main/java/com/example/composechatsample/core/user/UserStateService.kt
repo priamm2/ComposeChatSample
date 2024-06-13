@@ -1,5 +1,7 @@
 package com.example.composechatsample.core.user
 
+import com.example.composechatsample.core.FiniteStateMachine
+import com.example.composechatsample.core.UserState
 import com.example.composechatsample.core.models.User
 import com.example.composechatsample.log.taggedLogger
 import kotlinx.coroutines.flow.StateFlow

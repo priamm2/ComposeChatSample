@@ -2,7 +2,7 @@ package com.example.composechatsample.core
 
 public sealed class Result<out A : Any> {
 
-  public val isSuccess: Boolean
+  val isSuccess: Boolean
     inline get() = this is Success
 
   public val isFailure: Boolean

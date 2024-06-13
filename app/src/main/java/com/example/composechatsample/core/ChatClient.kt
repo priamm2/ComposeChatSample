@@ -11,6 +11,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.composechatsample.core.errors.ErrorHandler
+import com.example.composechatsample.core.errors.StreamChannelNotFoundException
+import com.example.composechatsample.core.errors.onCreateChannelError
+import com.example.composechatsample.core.errors.onMessageError
+import com.example.composechatsample.core.errors.onQueryMembersError
+import com.example.composechatsample.core.errors.onReactionError
 import com.example.composechatsample.core.events.ChatEvent
 import com.example.composechatsample.core.events.ConnectedEvent
 import com.example.composechatsample.core.events.ConnectingEvent
@@ -54,9 +59,12 @@ import com.example.composechatsample.core.notifications.ChatNotifications
 import com.example.composechatsample.core.notifications.NotificationConfig
 import com.example.composechatsample.core.notifications.NotificationHandler
 import com.example.composechatsample.core.notifications.NotificationHandlerFactory
+import com.example.composechatsample.core.notifications.PushNotificationReceivedListener
 import com.example.composechatsample.core.plugin.DependencyResolver
 import com.example.composechatsample.core.plugin.Plugin
 import com.example.composechatsample.core.plugin.PluginFactory
+import com.example.composechatsample.core.repository.NoOpRepositoryFactory
+import com.example.composechatsample.core.repository.RepositoryFacade
 import com.example.composechatsample.core.repository.RepositoryFactory
 import com.example.composechatsample.core.state.ClientState
 import com.example.composechatsample.core.state.MutableClientState
@@ -91,6 +99,7 @@ import java.util.Calendar
 import java.util.Date
 import java.util.concurrent.atomic.AtomicReference
 import kotlin.coroutines.CoroutineContext
+import kotlin.reflect.full.isSubclassOf
 import kotlin.time.Duration.Companion.days
 
 public class ChatClient
@@ -1027,7 +1036,7 @@ internal constructor(
         offset: Int,
         limit: Int,
     ): Call<List<Attachment>> =
-        getAttachments(channelType, channelId, offset, limit, ATTACHMENT_TYPE_FILE)
+        getAttachments(channelType, channelId, offset, limit, "file")
 
     @CheckResult
     public fun getImageAttachments(
@@ -1036,7 +1045,7 @@ internal constructor(
         offset: Int,
         limit: Int,
     ): Call<List<Attachment>> =
-        getAttachments(channelType, channelId, offset, limit, ATTACHMENT_TYPE_IMAGE)
+        getAttachments(channelType, channelId, offset, limit, "image")
 
     @CheckResult
     private fun getAttachments(

@@ -15,6 +15,7 @@ import com.example.composechatsample.core.models.Member
 import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.Mute
 import com.example.composechatsample.core.models.Reaction
+import com.example.composechatsample.core.models.SearchMessagesResult
 import com.example.composechatsample.core.models.UploadedFile
 import com.example.composechatsample.core.models.User
 import com.example.composechatsample.core.models.VideoCallInfo

@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import androidx.core.graphics.drawable.IconCompat
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.core.graphics.drawable.toBitmapOrNull
+import com.example.composechatsample.core.DispatcherProvider
 import com.example.composechatsample.core.models.User
 import kotlinx.coroutines.withContext
 import java.net.URL

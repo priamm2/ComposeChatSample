@@ -1,8 +1,14 @@
 package com.example.composechatsample.common
 
 import android.content.Context
+import android.media.MediaMetadataRetriever
 import android.media.MediaRecorder
 import android.os.Build
+import androidx.core.net.toUri
+import com.example.composechatsample.core.DispatcherProvider
+import com.example.composechatsample.core.MediaRecorderState
+import com.example.composechatsample.core.Error
+import com.example.composechatsample.core.RecordedMedia
 import com.example.composechatsample.core.models.Attachment
 import com.example.composechatsample.core.models.AttachmentType
 import com.example.composechatsample.log.taggedLogger
@@ -11,8 +17,14 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.File
+import kotlin.math.log10
+import com.example.composechatsample.core.Result
+import com.example.composechatsample.core.StreamFileUtil
 
-public class DefaultStreamMediaRecorder(
+const val EXTRA_DURATION: String = "duration"
+const val EXTRA_WAVEFORM_DATA: String = "waveform_data"
+
+class DefaultStreamMediaRecorder(
     private val context: Context,
 ) : StreamMediaRecorder {
 

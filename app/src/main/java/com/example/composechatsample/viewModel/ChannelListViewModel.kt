@@ -15,7 +15,10 @@ import com.example.composechatsample.core.models.Filters
 import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.User
 import com.example.composechatsample.core.models.querysort.QuerySorter
+import com.example.composechatsample.core.toUnitCall
 import com.example.composechatsample.log.taggedLogger
+import com.example.composechatsample.screen.QueryConfig
+import com.example.composechatsample.screen.SearchQuery
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelChildren
@@ -26,11 +29,13 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 
-public class ChannelListViewModel(
-    public val chatClient: ChatClient,
+class ChannelListViewModel(
+    val chatClient: ChatClient,
     initialSort: QuerySorter<Channel>,
     initialFilters: FilterObject?,
     private val channelLimit: Int = DEFAULT_CHANNEL_LIMIT,

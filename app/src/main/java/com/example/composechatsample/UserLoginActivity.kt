@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
@@ -39,6 +40,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.composechatsample.core.ChatClient
 import com.example.composechatsample.data.PredefinedUserCredentials
 import com.example.composechatsample.data.UserCredentials
+import com.example.composechatsample.screen.components.UserAvatar
 import com.example.composechatsample.ui.theme.ChatTheme
 import kotlinx.coroutines.launch
 
@@ -127,7 +129,7 @@ class UserLoginActivity : AppCompatActivity() {
 
             Text(
                 modifier = Modifier.padding(16.dp),
-                text = stringResource(R.string.sdk_version_template, STREAM_CHAT_VERSION),
+                text = stringResource(R.string.sdk_version_template, "1.0"),
                 fontSize = 14.sp,
                 color = ChatTheme.colors.textLowEmphasis,
             )

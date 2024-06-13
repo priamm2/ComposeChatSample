@@ -8,11 +8,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.example.composechatsample.common.StreamMediaRecorder
+import com.example.composechatsample.core.MediaRecorderState
+import com.example.composechatsample.core.RecordedMedia
+import com.example.composechatsample.core.StreamMediaRecorderState
 import com.example.composechatsample.log.StreamLog
 import com.example.composechatsample.log.TaggedLogger
+import com.example.composechatsample.screen.KeyValuePair
 import java.io.File
+import com.example.composechatsample.core.Result
 
-public class StatefulStreamMediaRecorder(
+class StatefulStreamMediaRecorder(
     private val streamMediaRecorder: StreamMediaRecorder,
 ) {
 

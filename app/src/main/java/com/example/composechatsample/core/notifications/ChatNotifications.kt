@@ -3,6 +3,8 @@ package com.example.composechatsample.core.notifications
 import android.app.Application
 import android.content.Context
 import com.example.composechatsample.core.ChatClient
+import com.example.composechatsample.core.DispatcherProvider
+import com.example.composechatsample.core.LoadNotificationDataWorker
 import com.example.composechatsample.core.events.NewMessageEvent
 import com.example.composechatsample.core.models.Channel
 import com.example.composechatsample.core.models.Device

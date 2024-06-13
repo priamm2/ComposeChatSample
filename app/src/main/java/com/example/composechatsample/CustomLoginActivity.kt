@@ -40,6 +40,7 @@ import com.example.composechatsample.core.models.User
 import com.example.composechatsample.data.UserCredentials
 import com.example.composechatsample.ui.theme.ChatTheme
 import kotlinx.coroutines.launch
+import com.example.composechatsample.core.Error
 
 class CustomLoginActivity : AppCompatActivity() {
 
@@ -135,7 +136,7 @@ class CustomLoginActivity : AppCompatActivity() {
 
                     Text(
                         modifier = Modifier.padding(16.dp),
-                        text = stringResource(R.string.sdk_version_template, BuildConfig.STREAM_CHAT_VERSION),
+                        text = stringResource(R.string.sdk_version_template, "1.0"),
                         fontSize = 14.sp,
                         color = ChatTheme.colors.textLowEmphasis,
                     )

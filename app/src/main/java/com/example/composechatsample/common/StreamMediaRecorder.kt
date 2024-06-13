@@ -1,7 +1,9 @@
 package com.example.composechatsample.common
 
+import com.example.composechatsample.core.MediaRecorderState
+import com.example.composechatsample.core.RecordedMedia
 import java.io.File
-
+import com.example.composechatsample.core.Result
 public interface StreamMediaRecorder {
 
     public fun startAudioRecording(

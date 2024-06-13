@@ -8,6 +8,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.ui.res.painterResource
 import com.example.composechatsample.common.DefaultStreamMediaRecorder
 import com.example.composechatsample.common.StreamMediaRecorder
+import com.example.composechatsample.core.MediaRecorderState
 import com.example.composechatsample.core.models.ReactionSortingByLastReactionAt
 import com.example.composechatsample.screen.MessagesScreen
 import com.example.composechatsample.ui.theme.ChatTheme
@@ -64,7 +65,6 @@ class MessagesActivity : BaseConnectedActivity() {
                     onHeaderTitleClick = {},
                 )
 
-                // MyCustomUi()
             }
         }
     }

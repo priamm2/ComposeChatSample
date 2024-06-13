@@ -1,6 +1,7 @@
 package com.example.composechatsample.viewModel
 
 import androidx.lifecycle.ViewModel
+import com.example.composechatsample.core.models.Attachment
 
 public class AttachmentsPickerViewModel(
     private val storageHelper: StorageHelperWrapper,

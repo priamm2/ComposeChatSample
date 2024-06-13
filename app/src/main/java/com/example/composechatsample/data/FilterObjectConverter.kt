@@ -2,13 +2,23 @@ package com.example.composechatsample.data
 
 import androidx.room.TypeConverter
 import com.example.composechatsample.core.models.AndFilterObject
+import com.example.composechatsample.core.models.AutocompleteFilterObject
+import com.example.composechatsample.core.models.ContainsFilterObject
+import com.example.composechatsample.core.models.DistinctFilterObject
 import com.example.composechatsample.core.models.EqualsFilterObject
 import com.example.composechatsample.core.models.ExistsFilterObject
 import com.example.composechatsample.core.models.FilterObject
 import com.example.composechatsample.core.models.Filters
+import com.example.composechatsample.core.models.GreaterThanFilterObject
+import com.example.composechatsample.core.models.GreaterThanOrEqualsFilterObject
+import com.example.composechatsample.core.models.InFilterObject
+import com.example.composechatsample.core.models.LessThanFilterObject
+import com.example.composechatsample.core.models.LessThanOrEqualsFilterObject
 import com.example.composechatsample.core.models.NeutralFilterObject
+import com.example.composechatsample.core.models.NorFilterObject
 import com.example.composechatsample.core.models.NotEqualsFilterObject
 import com.example.composechatsample.core.models.NotExistsFilterObject
+import com.example.composechatsample.core.models.NotInFilterObject
 import com.example.composechatsample.core.models.OrFilterObject
 
 internal class FilterObjectConverter {

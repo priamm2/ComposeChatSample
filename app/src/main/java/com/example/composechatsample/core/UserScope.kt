@@ -4,6 +4,7 @@ import com.example.composechatsample.core.models.UserId
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.job
+import kotlinx.coroutines.plus
 
 internal interface UserScope : CoroutineScope {
     val userId: UserIdentifier

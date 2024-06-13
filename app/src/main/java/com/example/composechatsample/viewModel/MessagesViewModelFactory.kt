@@ -4,6 +4,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.composechatsample.DeletedMessageVisibility
 import com.example.composechatsample.common.DefaultStreamMediaRecorder
 import com.example.composechatsample.common.StreamMediaRecorder
 import com.example.composechatsample.core.ChatClient

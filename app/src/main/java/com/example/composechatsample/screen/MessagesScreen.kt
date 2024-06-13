@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -30,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.composechatsample.R
 import com.example.composechatsample.StatefulStreamMediaRecorder
 import com.example.composechatsample.core.models.Channel
 import com.example.composechatsample.core.models.LinkPreview
@@ -37,6 +39,7 @@ import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.ReactionSorting
 import com.example.composechatsample.core.models.ReactionSortingByFirstReactionAt
 import com.example.composechatsample.ui.theme.ChatTheme
+import com.example.composechatsample.ui.theme.ThreadMessagesStart
 import com.example.composechatsample.viewModel.AttachmentsPickerViewModel
 import com.example.composechatsample.viewModel.MessageComposerViewModel
 import com.example.composechatsample.viewModel.MessageListViewModel
