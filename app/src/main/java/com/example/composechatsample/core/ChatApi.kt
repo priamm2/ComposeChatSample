@@ -1,6 +1,9 @@
 package com.example.composechatsample.core
 
 import androidx.annotation.CheckResult
+import com.example.composechatsample.core.api.QueryChannelRequest
+import com.example.composechatsample.core.api.QueryChannelsRequest
+import com.example.composechatsample.core.api.SearchMessagesRequest
 import com.example.composechatsample.core.events.ChatEvent
 import com.example.composechatsample.core.models.AppSettings
 import com.example.composechatsample.core.models.Attachment

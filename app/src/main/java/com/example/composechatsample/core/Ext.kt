@@ -1,6 +1,7 @@
 package com.example.composechatsample.core
 
 import android.webkit.MimeTypeMap
+import com.example.composechatsample.core.errors.ChatErrorCode
 import com.example.composechatsample.core.models.Attachment
 import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.User
@@ -59,4 +60,17 @@ internal fun File.getMimeType(): String =
     MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension) ?: "application/octet-stream"
 
 internal fun File.getMediaType(): MediaType = getMimeType().toMediaType()
+
+fun Error.NetworkError.Companion.fromChatErrorCode(
+    chatErrorCode: ChatErrorCode,
+    statusCode: Int = UNKNOWN_STATUS_CODE,
+    cause: Throwable? = null,
+): Error.NetworkError {
+    return Error.NetworkError(
+        message = chatErrorCode.description,
+        serverErrorCode = chatErrorCode.code,
+        statusCode = statusCode,
+        cause = cause,
+    )
+}
 

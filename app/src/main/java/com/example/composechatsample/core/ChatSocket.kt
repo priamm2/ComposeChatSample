@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import com.example.composechatsample.core.Error
 import kotlinx.coroutines.withTimeout
 import kotlin.coroutines.EmptyCoroutineContext
 

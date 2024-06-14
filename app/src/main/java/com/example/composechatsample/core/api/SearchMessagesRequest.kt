@@ -1,4 +1,4 @@
-package com.example.composechatsample.core
+package com.example.composechatsample.core.api
 
 import com.example.composechatsample.core.models.FilterObject
 import com.example.composechatsample.core.models.Message
@@ -10,6 +10,7 @@ public data class SearchMessagesRequest @JvmOverloads constructor(
     val channelFilter: FilterObject,
     val messageFilter: FilterObject,
     val next: String? = null,
+
     val querySort: QuerySorter<Message>? = null,
 ) {
     val sort: List<Map<String, Any>>? = querySort?.toDto()

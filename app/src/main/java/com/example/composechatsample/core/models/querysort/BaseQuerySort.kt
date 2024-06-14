@@ -3,8 +3,6 @@ package com.example.composechatsample.core.models.querysort
 import com.example.composechatsample.core.models.querysort.internal.CompositeComparator
 import com.example.composechatsample.core.models.querysort.internal.SortAttribute
 import com.example.composechatsample.core.models.querysort.internal.SortSpecification
-import com.example.composechatsample.core.models.querysort.QuerySorter
-import com.example.composechatsample.core.models.querysort.SortDirection
 
 abstract class BaseQuerySort<T : Any> : QuerySorter<T> {
 

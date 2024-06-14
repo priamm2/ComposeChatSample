@@ -4,7 +4,7 @@ import androidx.compose.runtime.Immutable
 import java.util.Date
 
 @Immutable
-public data class ChannelMute(
+data class ChannelMute(
     val user: User,
     val channel: Channel,
     val createdAt: Date,

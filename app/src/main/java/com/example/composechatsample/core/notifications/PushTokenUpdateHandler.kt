@@ -2,6 +2,7 @@ package com.example.composechatsample.core.notifications
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
 import com.example.composechatsample.core.ChatClient
 import com.example.composechatsample.core.models.Device
 import com.example.composechatsample.core.models.PushProvider
@@ -38,10 +39,6 @@ internal class PushTokenUpdateHandler(context: Context) {
             )
         }
 
-    /**
-     * Registers the current device on the server if necessary. Does no do
-     * anything if the token has already been sent to the server previously.
-     */
     suspend fun updateDeviceIfNecessary(device: Device) {
         val userPushToken = device.toUserPushToken()
         if (!device.isValid()) return

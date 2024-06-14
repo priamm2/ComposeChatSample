@@ -1,7 +1,10 @@
 package com.example.composechatsample.core
 
+import com.example.composechatsample.core.events.ChatEvent
 import com.example.composechatsample.core.events.ConnectedEvent
+import com.example.composechatsample.core.models.response.ErrorResponse
 import com.example.composechatsample.data.DateAdapter
+import com.example.composechatsample.data.ExactDateAdapter
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import retrofit2.Retrofit

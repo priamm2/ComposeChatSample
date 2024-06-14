@@ -2,7 +2,10 @@ package com.example.composechatsample.core.plugin
 
 import android.content.Context
 import com.example.composechatsample.core.ChatClient
+import com.example.composechatsample.core.events.ChatEvent
 import com.example.composechatsample.core.models.User
+import com.example.composechatsample.core.repository.RepositoryFacade
+import com.example.composechatsample.core.state.ClientState
 import com.example.composechatsample.log.StreamLog
 import com.example.composechatsample.log.taggedLogger
 import kotlinx.coroutines.CoroutineExceptionHandler

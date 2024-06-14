@@ -9,6 +9,8 @@ import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import com.example.composechatsample.core.Result
+import com.example.composechatsample.core.Error
+import com.example.composechatsample.core.errors.ChatErrorCode
 
 private const val EVENTS_BUFFER_SIZE = 100
 private const val CLOSE_SOCKET_CODE = 1000
@@ -81,6 +83,6 @@ internal class StreamWebSocket(
 }
 
 internal sealed class StreamWebSocketEvent {
-    data class Error(val streamError: Error) : StreamWebSocketEvent()
+    data class Error(val streamError: com.example.composechatsample.core.Error) : StreamWebSocketEvent()
     data class Message(val chatEvent: ChatEvent) : StreamWebSocketEvent()
 }

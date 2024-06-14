@@ -9,6 +9,11 @@ import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
 
+private const val HEALTH_CHECK_INTERVAL = 1_000L
+private const val MONITOR_INTERVAL = 10_000L
+private const val NO_EVENT_INTERVAL_THRESHOLD = 30_000L
+
+
 internal class HealthMonitor(
     private val timeProvider: TimeProvider = TimeProvider,
     private val retryInterval: RetryInterval = ExponencialRetryInterval,

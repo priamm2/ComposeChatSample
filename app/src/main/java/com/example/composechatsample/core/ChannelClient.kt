@@ -2,6 +2,7 @@ package com.example.composechatsample.core
 
 import androidx.annotation.CheckResult
 import androidx.lifecycle.LifecycleOwner
+import com.example.composechatsample.core.api.QueryChannelRequest
 import com.example.composechatsample.core.events.ChannelDeletedEvent
 import com.example.composechatsample.core.events.ChannelHiddenEvent
 import com.example.composechatsample.core.events.ChannelTruncatedEvent

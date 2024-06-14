@@ -3,6 +3,8 @@ package com.example.composechatsample.core
 import android.content.Context
 import android.net.ConnectivityManager
 import androidx.lifecycle.Lifecycle
+import com.example.composechatsample.core.api.AnonymousApi
+import com.example.composechatsample.core.api.AuthenticatedApi
 import com.example.composechatsample.core.notifications.ChatNotifications
 import com.example.composechatsample.core.notifications.ChatNotificationsImpl
 import com.example.composechatsample.core.notifications.NoOpChatNotifications
@@ -15,6 +17,8 @@ import com.example.composechatsample.core.token.TokenManagerImpl
 import com.example.composechatsample.core.user.UserStateService
 import com.example.composechatsample.log.ChatLogLevel
 import com.example.composechatsample.log.StreamLog
+import com.moczul.ok2curl.CurlInterceptor
+import com.moczul.ok2curl.logger.Logger
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit

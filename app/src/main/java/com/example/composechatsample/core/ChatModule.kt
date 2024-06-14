@@ -4,7 +4,13 @@ import android.content.Context
 import androidx.lifecycle.Lifecycle
 import com.example.composechatsample.core.notifications.NotificationHandler
 import com.example.composechatsample.core.token.TokenManager
+import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
+import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import okhttp3.OkHttpClient
+
+public val networkFlipper: NetworkFlipperPlugin = NetworkFlipperPlugin()
+
+public fun flipperInterceptor(): FlipperOkhttpInterceptor = FlipperOkhttpInterceptor(networkFlipper)
 
 internal class ChatModule(
     appContext: Context,

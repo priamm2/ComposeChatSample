@@ -10,6 +10,8 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.example.composechatsample.core.api.QueryChannelRequest
+import com.example.composechatsample.core.api.QueryChannelsRequest
 import com.example.composechatsample.core.errors.ErrorHandler
 import com.example.composechatsample.core.errors.StreamChannelNotFoundException
 import com.example.composechatsample.core.errors.onCreateChannelError
@@ -28,12 +30,17 @@ import com.example.composechatsample.core.events.UserEvent
 import com.example.composechatsample.core.events.UserUpdatedEvent
 import com.example.composechatsample.core.models.AppSettings
 import com.example.composechatsample.core.models.Attachment
+import com.example.composechatsample.core.models.dto.AttachmentDto
 import com.example.composechatsample.core.models.BannedUser
 import com.example.composechatsample.core.models.BannedUsersSort
 import com.example.composechatsample.core.models.Channel
 import com.example.composechatsample.core.models.ConnectionData
 import com.example.composechatsample.core.models.ConnectionState
 import com.example.composechatsample.core.models.Device
+import com.example.composechatsample.core.models.dto.DownstreamChannelDto
+import com.example.composechatsample.core.models.dto.DownstreamMessageDto
+import com.example.composechatsample.core.models.dto.DownstreamReactionDto
+import com.example.composechatsample.core.models.dto.DownstreamUserDto
 import com.example.composechatsample.core.models.EventType
 import com.example.composechatsample.core.models.FilterObject
 import com.example.composechatsample.core.models.Filters
@@ -78,8 +85,12 @@ import com.example.composechatsample.core.user.CredentialConfig
 import com.example.composechatsample.core.user.SharedPreferencesCredentialStorage
 import com.example.composechatsample.core.user.UserCredentialStorage
 import com.example.composechatsample.core.user.UserStateService
+import com.example.composechatsample.log.AndroidStreamLogger
 import com.example.composechatsample.log.ChatLogLevel
 import com.example.composechatsample.log.ChatLoggerHandler
+import com.example.composechatsample.log.CompositeStreamLogger
+import com.example.composechatsample.log.StreamLogLevelValidator
+import com.example.composechatsample.log.StreamLoggerHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -2506,7 +2517,7 @@ internal constructor(
         }
 
         internal fun buildSdkTrackingHeaders(): String {
-            val clientInformation = VERSION_PREFIX_HEADER.prefix + BuildConfig.STREAM_CHAT_VERSION
+            val clientInformation = VERSION_PREFIX_HEADER.prefix + "1.0"
             val buildModel = Build.MODEL
             val deviceManufacturer = Build.MANUFACTURER
             val apiLevel = Build.VERSION.SDK_INT

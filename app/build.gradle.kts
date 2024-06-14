@@ -62,6 +62,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.process)
     implementation(libs.androidx.appcompat)
     implementation(libs.retrofit)
+    implementation (libs.ok2curl)
+    implementation(libs.flipper.network.plugin)
     implementation(libs.androidx.material)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.firebase.messaging.ktx)

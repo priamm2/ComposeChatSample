@@ -1,13 +1,14 @@
-package com.example.composechatsample.core
+package com.example.composechatsample.core.api
 
+import com.example.composechatsample.core.ChannelRequest
 import com.example.composechatsample.core.models.Channel
 import com.example.composechatsample.core.models.FilterObject
 import com.example.composechatsample.core.models.querysort.QuerySortByField
 import com.example.composechatsample.core.models.querysort.QuerySorter
 
 public data class QueryChannelsRequest(
-    public val filter: FilterObject,
-    public var offset: Int = 0,
+    val filter: FilterObject,
+    var offset: Int = 0,
     public var limit: Int,
     public val querySort: QuerySorter<Channel> = QuerySortByField(),
     public var messageLimit: Int = 0,

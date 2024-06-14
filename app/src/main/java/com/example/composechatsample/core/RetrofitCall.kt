@@ -1,6 +1,7 @@
 package com.example.composechatsample.core
 
 import com.example.composechatsample.core.errors.ChatErrorCode
+import com.example.composechatsample.core.errors.ChatRequestError
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelChildren

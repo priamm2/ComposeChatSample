@@ -1,5 +1,7 @@
 package com.example.composechatsample.core
 
+import com.example.composechatsample.core.api.QueryChannelRequest
+import com.example.composechatsample.core.api.QueryChannelsRequest
 import com.example.composechatsample.core.models.Device
 import com.example.composechatsample.core.models.FilterObject
 import com.example.composechatsample.core.models.Member

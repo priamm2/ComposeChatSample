@@ -2,6 +2,7 @@ package com.example.composechatsample.viewModel
 
 import android.content.ClipboardManager
 import android.content.Context
+import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.composechatsample.DeletedMessageVisibility

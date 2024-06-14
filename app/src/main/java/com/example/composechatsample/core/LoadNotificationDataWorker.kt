@@ -16,6 +16,7 @@ import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import com.example.composechatsample.R
 import com.example.composechatsample.core.Result
+import com.example.composechatsample.core.api.QueryChannelRequest
 import com.example.composechatsample.log.taggedLogger
 
 internal class LoadNotificationDataWorker(
@@ -45,7 +46,7 @@ internal class LoadNotificationDataWorker(
 
             val result = getChannel.zipWith(getMessage).await()
             when (result) {
-                is Result.Success -> {
+                is com.example.composechatsample.core.Result.Success -> {
                     val (channel, message) = result.value
                     val messageParentId = message.parentId
 
@@ -56,7 +57,7 @@ internal class LoadNotificationDataWorker(
                     ChatClient.displayNotification(channel = channel, message = message)
                     Result.success()
                 }
-                is Result.Failure -> {
+                is com.example.composechatsample.core.Result.Failure -> {
                     logger.e { "Error while loading notification data: ${result.value}" }
                     Result.failure()
                 }

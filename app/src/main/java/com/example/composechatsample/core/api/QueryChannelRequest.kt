@@ -1,6 +1,9 @@
-package com.example.composechatsample.core
+package com.example.composechatsample.core.api
 
-public open class QueryChannelRequest : ChannelRequest<QueryChannelRequest> {
+import com.example.composechatsample.core.ChannelRequest
+import com.example.composechatsample.core.Pagination
+
+open class QueryChannelRequest : ChannelRequest<QueryChannelRequest> {
 
     override var state: Boolean = false
     override var watch: Boolean = false

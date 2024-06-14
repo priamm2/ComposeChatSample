@@ -1,6 +1,7 @@
 package com.example.composechatsample.core
 
 import com.example.composechatsample.core.errors.ChatErrorCode
+import com.example.composechatsample.core.errors.ChatRequestError
 import com.example.composechatsample.core.token.TokenManager
 import okhttp3.Interceptor
 import okhttp3.Request

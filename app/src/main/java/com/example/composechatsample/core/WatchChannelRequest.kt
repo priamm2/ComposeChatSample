@@ -1,5 +1,7 @@
 package com.example.composechatsample.core
 
+import com.example.composechatsample.core.api.QueryChannelRequest
+
 public class WatchChannelRequest : QueryChannelRequest() {
 
     init {

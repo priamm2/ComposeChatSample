@@ -5,7 +5,9 @@ import com.example.composechatsample.log.StreamLog
 import okhttp3.Response
 import okhttp3.ResponseBody
 import retrofit2.Retrofit
-import com.example.composechatsample.core.Error
+import com.example.composechatsample.core.models.ErrorDetail
+import com.example.composechatsample.core.models.response.ErrorResponse
+
 internal interface ChatParser {
 
     private val tag: String get() = "Chat:ChatParser"
