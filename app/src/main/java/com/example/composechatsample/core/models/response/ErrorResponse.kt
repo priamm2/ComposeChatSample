@@ -2,6 +2,7 @@ package com.example.composechatsample.core.models.response
 
 import com.example.composechatsample.core.models.ErrorDetail
 
+
 internal data class ErrorResponse(
     val code: Int = -1,
     var message: String = "",

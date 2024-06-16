@@ -1,5 +1,9 @@
 package com.example.composechatsample.core.models.mapper
 
+import com.example.composechatsample.core.PrivacySettings
+import com.example.composechatsample.core.ReadReceipts
+import com.example.composechatsample.core.TypingIndicators
+import com.example.composechatsample.core.events.ConnectedEvent
 import com.example.composechatsample.core.models.Attachment
 import com.example.composechatsample.core.models.Device
 import com.example.composechatsample.core.models.Message
@@ -7,6 +11,10 @@ import com.example.composechatsample.core.models.Reaction
 import com.example.composechatsample.core.models.User
 import com.example.composechatsample.core.models.dto.AttachmentDto
 import com.example.composechatsample.core.models.dto.DeviceDto
+import com.example.composechatsample.core.models.dto.PrivacySettingsDto
+import com.example.composechatsample.core.models.dto.ReadReceiptsDto
+import com.example.composechatsample.core.models.dto.TypingIndicatorsDto
+import com.example.composechatsample.core.models.dto.UpstreamConnectedEventDto
 import com.example.composechatsample.core.models.dto.UpstreamMessageDto
 import com.example.composechatsample.core.models.dto.UpstreamReactionDto
 import com.example.composechatsample.core.models.dto.UpstreamUserDto
@@ -56,7 +64,7 @@ internal fun Attachment.toDto(): AttachmentDto =
         extraData = extraData,
     )
 
-internal fun User.toDto(): UpstreamUserDto =
+fun User.toDto(): UpstreamUserDto =
     UpstreamUserDto(
         banned = isBanned,
         id = id,
@@ -71,14 +79,37 @@ internal fun User.toDto(): UpstreamUserDto =
         extraData = extraData,
     )
 
-internal fun Device.toDto(): DeviceDto =
+fun PrivacySettings.toDto(): PrivacySettingsDto = PrivacySettingsDto(
+    typing_indicators = typingIndicators?.toDto(),
+    read_receipts = readReceipts?.toDto(),
+)
+
+fun TypingIndicators.toDto(): TypingIndicatorsDto = TypingIndicatorsDto(
+    enabled = enabled,
+)
+
+fun ReadReceipts.toDto(): ReadReceiptsDto = ReadReceiptsDto(
+    enabled = enabled,
+)
+
+fun Device.toDto(): DeviceDto =
     DeviceDto(
         id = token,
         push_provider = pushProvider.key,
         provider_name = providerName,
     )
 
-internal fun Reaction.toDto(): UpstreamReactionDto =
+fun ConnectedEvent.toDto(): UpstreamConnectedEventDto {
+    return UpstreamConnectedEventDto(
+        type = this.type,
+        created_at = createdAt,
+        me = me.toDto(),
+        connection_id = connectionId,
+    )
+}
+
+
+fun Reaction.toDto(): UpstreamReactionDto =
     UpstreamReactionDto(
         created_at = createdAt,
         message_id = messageId,

@@ -9,7 +9,9 @@ import com.example.composechatsample.core.models.User
 import com.example.composechatsample.core.models.querysort.QuerySorter
 import java.util.Date
 import com.example.composechatsample.core.Result
-import com.example.composechatsample.core.ThreadQueryListener
+import com.example.composechatsample.core.api.QueryChannelRequest
+import com.example.composechatsample.core.api.QueryChannelsRequest
+import com.example.composechatsample.core.errors.ErrorHandler
 import com.example.composechatsample.core.events.ChatEvent
 
 public interface Plugin :

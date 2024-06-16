@@ -2,12 +2,13 @@ package com.example.composechatsample.core.push
 
 import android.content.Context
 import com.example.composechatsample.core.models.PushProvider
-import com.example.composechatsample.core.notifications.PushDeviceGenerator
 import com.example.composechatsample.log.StreamLog
 import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
 import com.google.firebase.messaging.FirebaseMessaging
 
-public class FirebasePushDeviceGenerator
+
+class FirebasePushDeviceGenerator
 @JvmOverloads
 constructor(
     private val firebaseMessaging: FirebaseMessaging = FirebaseMessaging.getInstance(),

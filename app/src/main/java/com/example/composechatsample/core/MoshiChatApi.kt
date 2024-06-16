@@ -2,6 +2,7 @@ package com.example.composechatsample.core
 
 import com.example.composechatsample.core.api.QueryChannelRequest
 import com.example.composechatsample.core.api.QueryChannelsRequest
+import com.example.composechatsample.core.api.QueryUsersRequest
 import com.example.composechatsample.core.api.SearchMessagesRequest
 import com.example.composechatsample.core.events.ChatEvent
 import com.example.composechatsample.core.models.requests.AcceptInviteRequest
@@ -72,6 +73,7 @@ import com.example.composechatsample.core.models.requests.VideoCallTokenRequest
 import com.example.composechatsample.core.models.response.AppSettingsResponse
 import com.example.composechatsample.core.models.response.BannedUserResponse
 import com.example.composechatsample.core.models.response.CreateVideoCallResponse
+import com.example.composechatsample.core.models.response.VideoCallTokenResponse
 import com.example.composechatsample.log.taggedLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -938,7 +940,7 @@ constructor(
         sort: QuerySorter<Member>,
         members: List<Member>,
     ): Call<List<Member>> {
-        val request = io.getstream.chat.android.client.api2.model.requests.QueryMembersRequest(
+        val request = com.example.composechatsample.core.models.requests.QueryMembersRequest(
             type = channelType,
             id = channelId,
             filter_conditions = filter.toMap(),
@@ -966,7 +968,8 @@ constructor(
     }
 
     override fun getVideoCallToken(callId: String): Call<VideoCallToken> {
-        return callApi.getCallToken(callId, VideoCallTokenRequest(callId)).map(VideoCallTokenResponse::toDomain)
+        return callApi.getCallToken(callId, VideoCallTokenRequest(callId)).map(
+            VideoCallTokenResponse::toDomain)
     }
 
     override fun sendEvent(

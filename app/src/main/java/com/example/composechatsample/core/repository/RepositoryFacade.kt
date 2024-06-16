@@ -1,6 +1,9 @@
 package com.example.composechatsample.core.repository
 
 import androidx.annotation.VisibleForTesting
+import com.example.composechatsample.core.api.AnyChannelPaginationRequest
+import com.example.composechatsample.core.api.isRequestingMoreThanLastMessage
+import com.example.composechatsample.core.enrichWithCid
 import com.example.composechatsample.core.models.Channel
 import com.example.composechatsample.core.models.ChannelConfig
 import com.example.composechatsample.core.models.Config
@@ -8,9 +11,11 @@ import com.example.composechatsample.core.models.Member
 import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.Reaction
 import com.example.composechatsample.core.models.User
+import com.example.composechatsample.core.users
 import com.example.composechatsample.log.taggedLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import java.util.Date
 
 @SuppressWarnings("LongParameterList")

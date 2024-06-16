@@ -1,11 +1,20 @@
-package com.example.composechatsample.core.plugin
+package com.example.composechatsample.core.state
 
 import android.content.Context
 import com.example.composechatsample.core.ChatClient
+import com.example.composechatsample.core.DispatcherProvider
 import com.example.composechatsample.core.events.ChatEvent
 import com.example.composechatsample.core.models.User
+import com.example.composechatsample.core.plugin.EventHandler
+import com.example.composechatsample.core.plugin.EventHandlerSequential
+import com.example.composechatsample.core.plugin.LogicRegistry
+import com.example.composechatsample.core.plugin.MutableGlobalState
+import com.example.composechatsample.core.plugin.Plugin
+import com.example.composechatsample.core.plugin.PluginFactory
+import com.example.composechatsample.core.plugin.StateErrorHandlerFactory
+import com.example.composechatsample.core.plugin.StatePluginConfig
+import com.example.composechatsample.core.plugin.SyncManager
 import com.example.composechatsample.core.repository.RepositoryFacade
-import com.example.composechatsample.core.state.ClientState
 import com.example.composechatsample.log.StreamLog
 import com.example.composechatsample.log.taggedLogger
 import kotlinx.coroutines.CoroutineExceptionHandler

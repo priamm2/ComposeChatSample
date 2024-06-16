@@ -12,7 +12,7 @@ import com.example.composechatsample.core.notifications.NotificationConfig
 import com.example.composechatsample.core.notifications.NotificationHandlerFactory
 import com.example.composechatsample.core.plugin.StatePluginConfig
 import com.example.composechatsample.core.plugin.StreamOfflinePluginFactory
-import com.example.composechatsample.core.plugin.StreamStatePluginFactory
+import com.example.composechatsample.core.state.StreamStatePluginFactory
 import com.example.composechatsample.core.push.FirebasePushDeviceGenerator
 import com.example.composechatsample.log.ChatLogLevel
 import kotlinx.coroutines.flow.transformWhile

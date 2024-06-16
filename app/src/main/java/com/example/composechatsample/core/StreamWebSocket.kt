@@ -11,6 +11,7 @@ import okhttp3.WebSocketListener
 import com.example.composechatsample.core.Result
 import com.example.composechatsample.core.Error
 import com.example.composechatsample.core.errors.ChatErrorCode
+import com.example.composechatsample.core.errors.SocketErrorMessage
 
 private const val EVENTS_BUFFER_SIZE = 100
 private const val CLOSE_SOCKET_CODE = 1000

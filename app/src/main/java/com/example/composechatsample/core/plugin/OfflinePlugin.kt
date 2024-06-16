@@ -1,5 +1,6 @@
 package com.example.composechatsample.core.plugin
 
+import com.example.composechatsample.core.errors.ErrorHandler
 import com.example.composechatsample.core.models.User
 import kotlin.reflect.KClass
 

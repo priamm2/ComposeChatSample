@@ -4,6 +4,8 @@ import androidx.compose.runtime.Immutable
 import com.example.composechatsample.core.models.CustomObject
 import java.io.File
 
+import com.example.composechatsample.core.Error
+
 @Immutable
 public data class Attachment(
     val authorName: String? = null,

@@ -1,4 +1,5 @@
 package com.example.composechatsample.core.plugin
+import com.example.composechatsample.core.Result
 
 public interface ChannelMarkReadListener {
 

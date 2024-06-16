@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 class ToggleService private constructor(private val sharedPreferences: SharedPreferences) {
 
     public fun isEnabled(featureKey: String): Boolean =
-        sharedPreferences.getBoolean(featureKey, false) && BuildConfig.DEBUG
+        sharedPreferences.getBoolean(featureKey, false)
 
     public fun setToggle(featureKey: String, value: Boolean) {
         sharedPreferences.edit()

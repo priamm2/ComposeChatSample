@@ -3,6 +3,7 @@ package com.example.composechatsample.core.notifications
 import android.app.Application
 import android.content.Context
 import com.example.composechatsample.core.ChatClient
+import com.example.composechatsample.core.DevicePushProvider
 import com.example.composechatsample.core.DispatcherProvider
 import com.example.composechatsample.core.LoadNotificationDataWorker
 import com.example.composechatsample.core.events.NewMessageEvent
@@ -10,6 +11,9 @@ import com.example.composechatsample.core.models.Channel
 import com.example.composechatsample.core.models.Device
 import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.PushMessage
+import com.example.composechatsample.core.models.PushProvider
+import com.example.composechatsample.core.push.PushDevice
+import com.example.composechatsample.core.toDevicePushProvider
 import com.example.composechatsample.log.taggedLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -57,7 +61,15 @@ internal class ChatNotificationsImpl constructor(
         notificationConfig.pushDeviceGenerators.firstOrNull { it.isValidForThisDevice(context) }
             ?.let {
                 it.onPushDeviceGeneratorSelected()
-                it.asyncGeneratePushDevice { setDevice(it.toDevice()) }
+                it.asyncGenerateDevice {
+                    setDevice(
+                        Device(
+                            token = it.token,
+                            pushProvider = it.pushProvider.toDevicePushProvider(),
+                            providerName = it.providerName,
+                            )
+                    )
+                }
             }
     }
 

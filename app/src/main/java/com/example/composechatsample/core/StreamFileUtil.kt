@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Environment
 import androidx.core.content.FileProvider
+import com.example.composechatsample.common.StreamFileProvider
 import com.example.composechatsample.core.models.Attachment
 import java.io.File
 import java.io.IOException

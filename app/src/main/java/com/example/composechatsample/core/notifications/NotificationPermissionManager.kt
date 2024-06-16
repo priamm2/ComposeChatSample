@@ -1,6 +1,7 @@
 package com.example.composechatsample.core.notifications
 
 import android.app.Application
+import com.example.composechatsample.core.push.PushNotificationPermissionRequester
 import com.example.composechatsample.log.taggedLogger
 
 public class NotificationPermissionManager private constructor(

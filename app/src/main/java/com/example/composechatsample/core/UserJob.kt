@@ -1,4 +1,5 @@
 @file:OptIn(InternalCoroutinesApi::class)
+@file:Suppress("DEPRECATION_ERROR")
 package com.example.composechatsample.core
 
 import com.example.composechatsample.core.models.UserId

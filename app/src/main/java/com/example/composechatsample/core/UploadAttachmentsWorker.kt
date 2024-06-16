@@ -3,8 +3,11 @@ package com.example.composechatsample.core
 import com.example.composechatsample.core.models.Attachment
 import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.SyncStatus
+import com.example.composechatsample.core.repository.MessageRepository
 import com.example.composechatsample.log.StreamLog
 import com.example.composechatsample.log.taggedLogger
+import com.example.composechatsample.core.Error
+import com.example.composechatsample.core.Result
 
 private const val TAG = "Chat:UploadWorker"
 
@@ -25,7 +28,7 @@ public class UploadAttachmentsWorker(
             ?: messageRepository.selectMessage(messageId)
 
         return try {
-            sendAttachments(message) ?: Result.Failure(
+            sendAttachments(message!!) ?: Result.Failure(
                 Error.GenericError("The message with id $messageId could not be found."),
             )
         } catch (e: Exception) {

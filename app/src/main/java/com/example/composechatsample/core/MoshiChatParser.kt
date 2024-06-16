@@ -1,13 +1,21 @@
 package com.example.composechatsample.core
 
+import com.example.composechatsample.core.errors.ErrorDetail
+import com.example.composechatsample.core.errors.ErrorResponse
+import com.example.composechatsample.core.errors.SocketErrorMessage
 import com.example.composechatsample.core.events.ChatEvent
 import com.example.composechatsample.core.events.ConnectedEvent
-import com.example.composechatsample.core.models.response.ErrorResponse
+import com.example.composechatsample.core.models.dto.ChatEventDto
+import com.example.composechatsample.core.models.dto.SocketErrorResponse
+import com.example.composechatsample.core.models.dto.UpstreamConnectedEventDto
+import com.example.composechatsample.core.models.mapper.toDomain
+import com.example.composechatsample.core.models.mapper.toDto
 import com.example.composechatsample.data.DateAdapter
 import com.example.composechatsample.data.ExactDateAdapter
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 internal class MoshiChatParser : ChatParser {
 
@@ -71,16 +79,36 @@ internal class MoshiChatParser : ChatParser {
 
     private val socketErrorResponseAdapter = moshi.adapter(SocketErrorResponse::class.java)
 
-    @Suppress("UNCHECKED_CAST")
     private fun parseSocketError(raw: String): SocketErrorMessage {
         return socketErrorResponseAdapter.fromJson(raw)!!.toDomain()
     }
 
-    private val errorResponseAdapter = moshi.adapter(SocketErrorResponse.ErrorResponse::class.java)
+    private val errorResponseAdapter = moshi.adapter(ErrorResponse::class.java)
 
-    @Suppress("UNCHECKED_CAST")
     private fun parseErrorResponse(raw: String): ErrorResponse {
         return errorResponseAdapter.fromJson(raw)!!.toDomain()
+    }
+
+    fun ErrorResponse.toDomain(): ErrorResponse {
+        val dto = this
+        return ErrorResponse(
+            code = dto.code,
+            message = dto.message,
+            statusCode = dto.statusCode,
+            exceptionFields = dto.exceptionFields,
+            moreInfo = dto.moreInfo,
+            details = dto.details.map { it.toDomain() },
+        ).apply {
+            duration = dto.duration
+        }
+    }
+
+    fun ErrorDetail.toDomain(): ErrorDetail {
+        val dto = this
+        return ErrorDetail(
+            code = dto.code,
+            messages = dto.messages,
+        )
     }
 
     private val chatEventDtoAdapter = moshi.adapter(ChatEventDto::class.java)

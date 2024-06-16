@@ -12,6 +12,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.composechatsample.core.api.QueryChannelRequest
 import com.example.composechatsample.core.api.QueryChannelsRequest
+import com.example.composechatsample.core.api.QueryUsersRequest
 import com.example.composechatsample.core.errors.ErrorHandler
 import com.example.composechatsample.core.errors.StreamChannelNotFoundException
 import com.example.composechatsample.core.errors.onCreateChannelError

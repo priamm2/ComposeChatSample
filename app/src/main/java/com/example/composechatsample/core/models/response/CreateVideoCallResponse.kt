@@ -1,10 +1,11 @@
 package com.example.composechatsample.core.models.response
 
+import com.example.composechatsample.core.models.dto.VideoCallInfoDto
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-internal data class CreateVideoCallResponse(
+data class CreateVideoCallResponse(
     val call: VideoCallInfoDto,
     val token: String,
     @field:Json(name = "agora_uid") val agoraUid: Int?,

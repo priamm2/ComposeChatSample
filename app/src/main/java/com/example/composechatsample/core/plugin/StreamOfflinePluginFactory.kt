@@ -3,6 +3,14 @@ package com.example.composechatsample.core.plugin
 import android.content.Context
 import com.example.composechatsample.core.ChatClient
 import com.example.composechatsample.core.models.User
+import com.example.composechatsample.core.repository.DatabaseRepositoryFactory
+import com.example.composechatsample.core.repository.DeleteReactionListenerDatabase
+import com.example.composechatsample.core.repository.EditMessageListenerDatabase
+import com.example.composechatsample.core.repository.HideChannelListenerDatabase
+import com.example.composechatsample.core.repository.QueryChannelListenerDatabase
+import com.example.composechatsample.core.repository.RepositoryFactory
+import com.example.composechatsample.core.repository.SendReactionListenerDatabase
+import com.example.composechatsample.core.repository.ThreadQueryListenerDatabase
 import com.example.composechatsample.data.ChatDatabase
 import com.example.composechatsample.log.taggedLogger
 import kotlinx.coroutines.SupervisorJob

@@ -3,6 +3,9 @@ package com.example.composechatsample.core.models.mapper
 import com.example.composechatsample.core.ChatClient
 import com.example.composechatsample.core.errors.ChatError
 import com.example.composechatsample.core.errors.ChatErrorDetail
+import com.example.composechatsample.core.errors.ErrorDetail
+import com.example.composechatsample.core.errors.ErrorResponse
+import com.example.composechatsample.core.errors.SocketErrorMessage
 import com.example.composechatsample.core.events.ChannelDeletedEvent
 import com.example.composechatsample.core.events.ChannelHiddenEvent
 import com.example.composechatsample.core.events.ChannelTruncatedEvent
@@ -51,6 +54,7 @@ import com.example.composechatsample.core.events.UserPresenceChangedEvent
 import com.example.composechatsample.core.events.UserStartWatchingEvent
 import com.example.composechatsample.core.events.UserStopWatchingEvent
 import com.example.composechatsample.core.events.UserUpdatedEvent
+import com.example.composechatsample.core.models.AgoraChannel
 import com.example.composechatsample.core.models.App
 import com.example.composechatsample.core.models.AppSettings
 import com.example.composechatsample.core.models.Attachment
@@ -63,6 +67,8 @@ import com.example.composechatsample.core.models.Command
 import com.example.composechatsample.core.models.Config
 import com.example.composechatsample.core.models.Device
 import com.example.composechatsample.core.models.FileUploadConfig
+import com.example.composechatsample.core.models.Flag
+import com.example.composechatsample.core.models.HMSRoom
 import com.example.composechatsample.core.models.Member
 import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.MessageModerationAction
@@ -71,7 +77,11 @@ import com.example.composechatsample.core.models.Mute
 import com.example.composechatsample.core.models.PushProvider
 import com.example.composechatsample.core.models.Reaction
 import com.example.composechatsample.core.models.ReactionGroup
+import com.example.composechatsample.core.models.SearchWarning
 import com.example.composechatsample.core.models.User
+import com.example.composechatsample.core.models.VideoCallInfo
+import com.example.composechatsample.core.models.VideoCallToken
+import com.example.composechatsample.core.models.dto.AgoraDto
 import com.example.composechatsample.core.models.dto.AttachmentDto
 import com.example.composechatsample.core.models.dto.ChannelDeletedEventDto
 import com.example.composechatsample.core.models.dto.ChannelHiddenEventDto
@@ -93,6 +103,7 @@ import com.example.composechatsample.core.models.dto.DisconnectedEventDto
 import com.example.composechatsample.core.models.dto.DownstreamChannelDto
 import com.example.composechatsample.core.models.dto.DownstreamChannelMuteDto
 import com.example.composechatsample.core.models.dto.DownstreamChannelUserRead
+import com.example.composechatsample.core.models.dto.DownstreamFlagDto
 import com.example.composechatsample.core.models.dto.DownstreamMemberDto
 import com.example.composechatsample.core.models.dto.DownstreamMessageDto
 import com.example.composechatsample.core.models.dto.DownstreamModerationDetailsDto
@@ -105,6 +116,7 @@ import com.example.composechatsample.core.models.dto.ErrorDto
 import com.example.composechatsample.core.models.dto.ErrorEventDto
 import com.example.composechatsample.core.models.dto.GlobalUserBannedEventDto
 import com.example.composechatsample.core.models.dto.GlobalUserUnbannedEventDto
+import com.example.composechatsample.core.models.dto.HMSDto
 import com.example.composechatsample.core.models.dto.HealthEventDto
 import com.example.composechatsample.core.models.dto.MarkAllReadEventDto
 import com.example.composechatsample.core.models.dto.MemberAddedEventDto
@@ -129,6 +141,8 @@ import com.example.composechatsample.core.models.dto.NotificationRemovedFromChan
 import com.example.composechatsample.core.models.dto.ReactionDeletedEventDto
 import com.example.composechatsample.core.models.dto.ReactionNewEventDto
 import com.example.composechatsample.core.models.dto.ReactionUpdateEventDto
+import com.example.composechatsample.core.models.dto.SearchWarningDto
+import com.example.composechatsample.core.models.dto.SocketErrorResponse
 import com.example.composechatsample.core.models.dto.TypingStartEventDto
 import com.example.composechatsample.core.models.dto.TypingStopEventDto
 import com.example.composechatsample.core.models.dto.UnknownEventDto
@@ -142,7 +156,9 @@ import com.example.composechatsample.core.models.dto.UserUpdatedEventDto
 import com.example.composechatsample.core.models.response.AppDto
 import com.example.composechatsample.core.models.response.AppSettingsResponse
 import com.example.composechatsample.core.models.response.BannedUserResponse
+import com.example.composechatsample.core.models.response.CreateVideoCallResponse
 import com.example.composechatsample.core.models.response.FileUploadConfigDto
+import com.example.composechatsample.core.models.response.VideoCallTokenResponse
 import java.util.Date
 
 fun AppSettingsResponse.toDomain(): AppSettings {
@@ -1088,3 +1104,86 @@ fun DownstreamMuteDto.toDomain(): Mute =
         updatedAt = updated_at,
         expires = expires,
     )
+
+fun SocketErrorResponse.toDomain(): SocketErrorMessage {
+    return SocketErrorMessage(
+        error = error?.toDomain(),
+    )
+}
+
+fun SocketErrorResponse.ErrorResponse.toDomain(): ErrorResponse {
+    val dto = this
+    return ErrorResponse(
+        code = dto.code,
+        message = dto.message,
+        statusCode = dto.StatusCode,
+        exceptionFields = dto.exception_fields,
+        moreInfo = dto.more_info,
+        details = dto.details.map { it.toDomain() },
+    ).apply {
+        duration = dto.duration
+    }
+}
+
+fun SocketErrorResponse.ErrorResponse.ErrorDetail.toDomain(): ErrorDetail {
+    val dto = this
+    return ErrorDetail(
+        code = dto.code,
+        messages = dto.messages,
+    )
+}
+
+fun CreateVideoCallResponse.toDomain(): VideoCallInfo {
+    return VideoCallInfo(
+        callId = call.id,
+        provider = call.provider,
+        type = call.type,
+        agoraChannel = call.agora.toDomain(),
+        hmsRoom = call.hms.toDomain(),
+        videoCallToken = VideoCallToken(
+            token = token,
+            agoraUid = agoraUid,
+            agoraAppId = agoraAppId,
+        ),
+    )
+}
+
+fun AgoraDto.toDomain(): AgoraChannel {
+    return AgoraChannel(channel = channel)
+}
+
+fun HMSDto.toDomain(): HMSRoom {
+    return HMSRoom(roomId = roomId, roomName = roomName)
+}
+
+fun SearchWarningDto.toDomain(): SearchWarning {
+    return SearchWarning(
+        channelSearchCids = channel_search_cids,
+        channelSearchCount = channel_search_count,
+        warningCode = warning_code,
+        warningDescription = warning_description,
+    )
+}
+
+fun DownstreamFlagDto.toDomain(): Flag {
+    return Flag(
+        user = user.toDomain(),
+        targetUser = target_user?.toDomain(),
+        targetMessageId = target_message_id,
+        reviewedBy = created_at,
+        createdByAutomod = created_by_automod,
+        createdAt = approved_at,
+        updatedAt = updated_at,
+        reviewedAt = reviewed_at,
+        approvedAt = approved_at,
+        rejectedAt = rejected_at,
+    )
+}
+
+fun VideoCallTokenResponse.toDomain(): VideoCallToken {
+    return VideoCallToken(
+        token = token,
+        agoraUid = agoraUid,
+        agoraAppId = agoraAppId,
+    )
+}

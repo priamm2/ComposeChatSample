@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="stream_ic_notification">#00000000</color>
     <color name="stream_compose_text_high_emphasis">#000000</color>
     <color name="stream_compose_text_high_emphasis_inverse">#FFFFFF</color>
     <color name="stream_compose_text_low_emphasis">#72767E</color>

@@ -4,6 +4,7 @@ import com.example.composechatsample.core.api.AuthenticatedApi
 import com.example.composechatsample.core.models.requests.VideoCallCreateRequest
 import com.example.composechatsample.core.models.requests.VideoCallTokenRequest
 import com.example.composechatsample.core.models.response.CreateVideoCallResponse
+import com.example.composechatsample.core.models.response.VideoCallTokenResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.Path

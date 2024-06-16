@@ -1,6 +1,6 @@
 package com.example.composechatsample.core.errors
 
-public interface ErrorHandler :
+interface ErrorHandler :
     DeleteReactionErrorHandler,
     CreateChannelErrorHandler,
     QueryMembersErrorHandler,

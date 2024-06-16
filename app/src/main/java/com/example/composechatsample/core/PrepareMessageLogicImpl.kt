@@ -1,11 +1,14 @@
 package com.example.composechatsample.core
 
 import com.example.composechatsample.core.models.Attachment
+import com.example.composechatsample.core.models.Channel
 import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.SyncStatus
 import com.example.composechatsample.core.models.User
 import com.example.composechatsample.core.state.ClientState
 import java.util.Date
+import java.util.UUID
+import java.util.regex.Pattern
 
 internal class PrepareMessageLogicImpl(
     private val clientState: ClientState,
@@ -20,7 +23,7 @@ internal class PrepareMessageLogicImpl(
             when (it.upload) {
                 null -> it.copy(uploadState = Attachment.UploadState.Success)
                 else -> it.copy(
-                    extraData = it.extraData + mapOf(EXTRA_UPLOAD_ID to (it.uploadId ?: generateUploadId())),
+                    extraData = it.extraData + mapOf("uploadId" to (it.uploadId ?: generateUploadId())),
                     uploadState = Attachment.UploadState.Idle,
                 )
             }
@@ -53,6 +56,17 @@ internal class PrepareMessageLogicImpl(
                     channel?.replyMessage(null)
                 }
             }
+    }
+
+    fun getMessageType(message: Message): String {
+        val hasAttachments = message.attachments.isNotEmpty()
+        val hasAttachmentsToUpload = message.hasPendingAttachments()
+
+        return if (Pattern.compile("^/[a-z]*$").matcher(message.text).find() || (hasAttachments && hasAttachmentsToUpload)) {
+            Message.TYPE_EPHEMERAL
+        } else {
+            Message.TYPE_REGULAR
+        }
     }
 
     private fun generateUploadId(): String {

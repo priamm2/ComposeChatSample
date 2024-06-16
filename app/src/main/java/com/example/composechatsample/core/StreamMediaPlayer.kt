@@ -10,6 +10,9 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import java.util.concurrent.atomic.AtomicInteger
 
+private const val INITIAL_SPEED = 1F
+private const val SPEED_INCREMENT = 0.5F
+
 internal class StreamMediaPlayer(
     private val mediaPlayer: NativeMediaPlayer,
     private val userScope: UserScope,
