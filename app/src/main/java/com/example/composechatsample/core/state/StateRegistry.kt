@@ -8,6 +8,7 @@ import com.example.composechatsample.core.models.Channel
 import com.example.composechatsample.core.models.FilterObject
 import com.example.composechatsample.core.models.User
 import com.example.composechatsample.core.models.querysort.QuerySorter
+import com.example.composechatsample.core.plugin.BatchEvent
 import com.example.composechatsample.core.plugin.ChannelMutableState
 import com.example.composechatsample.core.plugin.QueryChannelsMutableState
 import com.example.composechatsample.log.taggedLogger

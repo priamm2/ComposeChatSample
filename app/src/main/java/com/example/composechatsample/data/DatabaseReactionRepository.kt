@@ -4,6 +4,9 @@ import com.example.composechatsample.core.models.Reaction
 import com.example.composechatsample.core.models.SyncStatus
 import com.example.composechatsample.core.models.User
 import com.example.composechatsample.core.repository.ReactionRepository
+import com.example.composechatsample.core.toEntity
+import com.example.composechatsample.core.toModel
+import java.util.Date
 
 internal class DatabaseReactionRepository(
     private val reactionDao: ReactionDao,

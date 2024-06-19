@@ -26,7 +26,7 @@ import java.util.Date
         ),
     ],
 )
-internal data class ReactionEntity(
+data class ReactionEntity(
     @ColumnInfo(index = true)
     val messageId: String,
     val userId: String,

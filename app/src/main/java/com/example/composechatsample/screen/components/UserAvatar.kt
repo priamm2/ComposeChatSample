@@ -3,6 +3,7 @@ package com.example.composechatsample.screen.components
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
@@ -10,11 +11,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
+import com.example.composechatsample.core.initials
 import com.example.composechatsample.core.models.User
+import com.example.composechatsample.screen.PreviewUserData
 import com.example.composechatsample.ui.theme.ChatTheme
 
 @Composable
-public fun UserAvatar(
+fun UserAvatar(
     user: User,
     modifier: Modifier = Modifier,
     shape: Shape = ChatTheme.shapes.avatar,

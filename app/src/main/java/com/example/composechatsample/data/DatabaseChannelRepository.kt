@@ -2,12 +2,16 @@ package com.example.composechatsample.data
 
 import androidx.collection.LruCache
 import com.example.composechatsample.core.launchWithMutex
+import com.example.composechatsample.core.maxOf
+import com.example.composechatsample.core.minOf
 import com.example.composechatsample.core.models.Channel
 import com.example.composechatsample.core.models.Member
 import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.User
 import com.example.composechatsample.core.models.mapper.syncUnreadCountWithReads
 import com.example.composechatsample.core.repository.ChannelRepository
+import com.example.composechatsample.core.toEntity
+import com.example.composechatsample.core.toModel
 import com.example.composechatsample.log.taggedLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.sync.Mutex

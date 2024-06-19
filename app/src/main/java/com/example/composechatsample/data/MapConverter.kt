@@ -1,6 +1,7 @@
 package com.example.composechatsample.data
 
 import androidx.room.TypeConverter
+import com.squareup.moshi.adapter
 
 class MapConverter {
     @OptIn(ExperimentalStdlibApi::class)

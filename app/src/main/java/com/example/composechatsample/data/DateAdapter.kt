@@ -8,7 +8,7 @@ import com.squareup.moshi.JsonWriter
 import com.squareup.moshi.ToJson
 import java.util.Date
 
-public class DateAdapter : JsonAdapter<Date>() {
+class DateAdapter : JsonAdapter<Date>() {
 
     private val streamDateFormatter = StreamDateFormatter("DateAdapter", cacheEnabled = true)
 

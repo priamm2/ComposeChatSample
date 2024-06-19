@@ -12,8 +12,8 @@ import com.example.composechatsample.core.ChatClient
 import com.example.composechatsample.core.models.Channel
 import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.querysort.QuerySortByField
-import com.example.composechatsample.screen.ChannelsScreen
-import com.example.composechatsample.screen.SearchMode
+import com.example.composechatsample.screen.channels.ChannelsScreen
+import com.example.composechatsample.screen.channels.SearchMode
 import com.example.composechatsample.ui.theme.ChatTheme
 import com.example.composechatsample.viewModel.ChannelListViewModel
 import com.example.composechatsample.viewModel.ChannelViewModelFactory

@@ -7,7 +7,7 @@ import com.example.composechatsample.core.models.SyncStatus
 import java.util.Date
 
 @Entity(tableName = CHANNEL_ENTITY_TABLE_NAME, indices = [Index(value = ["syncStatus"])])
-internal data class ChannelEntity(
+data class ChannelEntity(
     val type: String,
     val channelId: String,
     val name: String,

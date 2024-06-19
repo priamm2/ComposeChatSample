@@ -11,6 +11,7 @@ import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import com.example.composechatsample.core.ChatClient
 import com.example.composechatsample.core.cidToTypeAndId
+import com.example.composechatsample.core.logic
 import com.example.composechatsample.core.plugin.SyncHistoryManager
 import com.example.composechatsample.core.validateCid
 import com.example.composechatsample.log.StreamLog

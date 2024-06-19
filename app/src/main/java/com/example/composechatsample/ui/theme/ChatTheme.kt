@@ -9,13 +9,18 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
+import com.example.composechatsample.common.DefaultStreamMediaRecorder
+import com.example.composechatsample.common.StreamCdnImageResizing
+import com.example.composechatsample.common.StreamCoilImageLoaderFactory
 import com.example.composechatsample.common.StreamMediaRecorder
 import com.example.composechatsample.core.ChatClient
+import com.example.composechatsample.core.LocalStreamImageLoader
+import com.example.composechatsample.core.VersionPrefixHeader
 import com.example.composechatsample.helper.DateFormatter
 
 private val LocalColors = compositionLocalOf<StreamColors> {
@@ -123,6 +128,7 @@ private val LocalStreamMediaRecorder = compositionLocalOf<StreamMediaRecorder> {
     error("No StreamMediaRecorder provided! Make sure to wrap all usages of Stream components in a ChatTheme.")
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 public fun ChatTheme(
     isInDarkMode: Boolean = isSystemInDarkTheme(),

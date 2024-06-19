@@ -20,6 +20,7 @@ import com.example.composechatsample.core.models.NotEqualsFilterObject
 import com.example.composechatsample.core.models.NotExistsFilterObject
 import com.example.composechatsample.core.models.NotInFilterObject
 import com.example.composechatsample.core.models.OrFilterObject
+import com.squareup.moshi.adapter
 
 internal class FilterObjectConverter {
     @OptIn(ExperimentalStdlibApi::class)

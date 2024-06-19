@@ -10,7 +10,7 @@ import com.example.composechatsample.common.DefaultStreamMediaRecorder
 import com.example.composechatsample.common.StreamMediaRecorder
 import com.example.composechatsample.core.MediaRecorderState
 import com.example.composechatsample.core.models.ReactionSortingByLastReactionAt
-import com.example.composechatsample.screen.MessagesScreen
+import com.example.composechatsample.screen.messages.MessagesScreen
 import com.example.composechatsample.ui.theme.ChatTheme
 import com.example.composechatsample.ui.theme.MessageComposerTheme
 import com.example.composechatsample.ui.theme.StreamColors

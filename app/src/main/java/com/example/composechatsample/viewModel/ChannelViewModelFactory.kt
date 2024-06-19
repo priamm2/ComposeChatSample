@@ -7,6 +7,7 @@ import com.example.composechatsample.core.models.Channel
 import com.example.composechatsample.core.models.FilterObject
 import com.example.composechatsample.core.models.querysort.QuerySortByField
 import com.example.composechatsample.core.models.querysort.QuerySorter
+import com.example.composechatsample.core.plugin.ChatEventHandlerFactory
 
 
 class ChannelViewModelFactory(

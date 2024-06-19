@@ -1,7 +1,16 @@
 package com.example.composechatsample.viewModel
 
+import android.net.Uri
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.example.composechatsample.common.AttachmentMetaData
+import com.example.composechatsample.common.AttachmentPickerItemState
 import com.example.composechatsample.core.models.Attachment
+import com.example.composechatsample.screen.messages.AttachmentsPickerMode
+import com.example.composechatsample.screen.messages.Files
+import com.example.composechatsample.screen.messages.Images
 
 public class AttachmentsPickerViewModel(
     private val storageHelper: StorageHelperWrapper,

@@ -6,6 +6,7 @@ import com.example.composechatsample.core.plugin.SendReactionListener
 import com.example.composechatsample.core.state.ClientState
 import com.example.composechatsample.core.Result
 import com.example.composechatsample.core.Error
+import com.example.composechatsample.core.addMyReaction
 import com.example.composechatsample.core.enrichWithDataBeforeSending
 import com.example.composechatsample.core.updateSyncStatus
 import java.util.Date

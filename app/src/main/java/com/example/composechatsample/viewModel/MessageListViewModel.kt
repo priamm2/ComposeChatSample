@@ -1,14 +1,22 @@
 package com.example.composechatsample.viewModel
 
+import androidx.compose.runtime.getValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.composechatsample.DeletedMessageVisibility
+import com.example.composechatsample.core.asState
 import com.example.composechatsample.core.models.Channel
 import com.example.composechatsample.core.models.ConnectionState
 import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.User
 import com.example.composechatsample.log.taggedLogger
+import com.example.composechatsample.screen.GiphyAction
+import com.example.composechatsample.screen.MessageListState
+import com.example.composechatsample.screen.messages.MessageAction
+import com.example.composechatsample.screen.messages.MessageMode
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 public class MessageListViewModel(

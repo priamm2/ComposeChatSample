@@ -15,7 +15,13 @@ import com.example.composechatsample.R
 import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.ReactionSorting
 import com.example.composechatsample.core.models.ReactionSortingByFirstReactionAt
-import com.example.composechatsample.screen.components.MessageContainer
+import com.example.composechatsample.screen.components.LoadingIndicator
+import com.example.composechatsample.screen.components.rememberMessageListState
+import com.example.composechatsample.screen.messages.DefaultMessagesHelperContent
+import com.example.composechatsample.screen.messages.DefaultMessagesLoadingMoreIndicator
+import com.example.composechatsample.screen.messages.MessageContainer
+import com.example.composechatsample.screen.messages.Messages
+import com.example.composechatsample.screen.messages.MessagesLazyListState
 import com.example.composechatsample.ui.theme.ChatTheme
 import com.example.composechatsample.ui.theme.ThreadMessagesStart
 import com.example.composechatsample.viewModel.MessageListViewModel

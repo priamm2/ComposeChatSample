@@ -4,6 +4,8 @@ import androidx.collection.LruCache
 import com.example.composechatsample.core.launchWithMutex
 import com.example.composechatsample.core.models.User
 import com.example.composechatsample.core.repository.UserRepository
+import com.example.composechatsample.core.toEntity
+import com.example.composechatsample.core.toModel
 import com.example.composechatsample.log.taggedLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow

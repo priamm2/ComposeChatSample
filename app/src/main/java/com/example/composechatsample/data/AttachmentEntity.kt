@@ -21,7 +21,7 @@ import com.example.composechatsample.data.AttachmentEntity.Companion.ATTACHMENT_
     ],
     indices = [Index("messageId")],
 )
-internal data class AttachmentEntity(
+data class AttachmentEntity(
     @ColumnInfo(index = true)
     @PrimaryKey
     val id: String,
@@ -58,7 +58,7 @@ internal data class AttachmentEntity(
     }
 }
 
-internal data class UploadStateEntity(val statusCode: Int, val errorMessage: String?) {
+data class UploadStateEntity(val statusCode: Int, val errorMessage: String?) {
     internal companion object {
         internal const val UPLOAD_STATE_SUCCESS = 1
         internal const val UPLOAD_STATE_IN_PROGRESS = 2

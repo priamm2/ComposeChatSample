@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -51,7 +53,7 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.coil.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -64,6 +66,9 @@ dependencies {
     implementation(libs.retrofit)
     implementation (libs.converter.moshi)
     implementation(libs.itu)
+    implementation (libs.accompanist.permissions)
+    implementation (libs.accompanist.pager)
+    implementation (libs.accompanist.systemuicontroller)
     implementation (libs.ok2curl)
     implementation(libs.flipper.network.plugin)
     implementation(libs.androidx.material)
@@ -74,6 +79,8 @@ dependencies {
     implementation(libs.androidx.work.runtime.ktx)
     implementation(libs.play.services.base)
     testImplementation(libs.junit)
+    ksp(libs.moshi.kotlin.codegen)
+    ksp(libs.androidx.room.compiler)
     implementation(libs.okhttp)
     implementation(libs.moshi)
     implementation(libs.moshi.kotlin)

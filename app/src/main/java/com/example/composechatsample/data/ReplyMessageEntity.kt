@@ -8,7 +8,7 @@ import androidx.room.Relation
 import com.example.composechatsample.core.models.SyncStatus
 import java.util.Date
 
-internal data class ReplyMessageEntity(
+data class ReplyMessageEntity(
     @Embedded val replyMessageInnerEntity: ReplyMessageInnerEntity,
     @Relation(entity = ReplyAttachmentEntity::class, parentColumn = "id", entityColumn = "messageId")
     val attachments: List<ReplyAttachmentEntity>,
@@ -21,7 +21,7 @@ internal data class ReplyMessageEntity(
         Index(value = ["syncStatus"]),
     ],
 )
-internal data class ReplyMessageInnerEntity(
+data class ReplyMessageInnerEntity(
     @PrimaryKey
     val id: String,
     val cid: String,

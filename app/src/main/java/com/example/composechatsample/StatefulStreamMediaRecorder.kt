@@ -13,7 +13,6 @@ import com.example.composechatsample.core.RecordedMedia
 import com.example.composechatsample.core.StreamMediaRecorderState
 import com.example.composechatsample.log.StreamLog
 import com.example.composechatsample.log.TaggedLogger
-import com.example.composechatsample.screen.KeyValuePair
 import java.io.File
 import com.example.composechatsample.core.Result
 

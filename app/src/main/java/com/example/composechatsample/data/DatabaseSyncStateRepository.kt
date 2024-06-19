@@ -2,6 +2,8 @@ package com.example.composechatsample.data
 
 import com.example.composechatsample.core.repository.SyncState
 import com.example.composechatsample.core.repository.SyncStateRepository
+import com.example.composechatsample.core.toEntity
+import com.example.composechatsample.core.toModel
 
 internal class DatabaseSyncStateRepository(private val syncStateDao: SyncStateDao) :
     SyncStateRepository {

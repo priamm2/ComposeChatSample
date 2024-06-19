@@ -187,11 +187,19 @@
     <string name="stream_chat_error_notification_group_summary_content_text">You\'ve received new messages</string>
     <string name="stream_chat_notification_empty_username">User without name</string>
     <string name="stream_ui_message_input_permission_notifications_message">Notifications blocked</string>
-    <!-- Content Description -->
+    <string name="stream_ui_channel_list_untitled_channel_plus_more">%1$s +%2$d more</string>
+    <string name="stream_ui_channel_list_untitled_channel">Channel without name</string>
     <string name="stream_compose_cd_channel_item" translatable="false">Channel item</string>
     <string name="stream_compose_cd_message_item" translatable="false">Message item</string>
     <string name="stream_compose_cd_message_input" translatable="false">Message input</string>
     <string name="stream_compose_cd_send_button" translatable="false">Send button</string>
     <string name="stream_compose_cd_play_button" translatable="false">Play button</string>
     <string name="stream_compose_cd_record_audio_message" translatable="false">Record audio message</string>
+
+    <string name="stream_ui_moderation_dialog_title">Failed to send message</string>
+    <string name="stream_ui_moderation_dialog_description">This message might violate our moderation policy. Are you sure you want to send it? Please take a look at our Community Guidelines.</string>
+    <string name="stream_ui_moderation_dialog_send">Send anyway</string>
+    <string name="stream_ui_moderation_dialog_edit">Edit message</string>
+    <string name="stream_ui_moderation_dialog_delete">Delete message</string>
+    <string name="stream_ui_message_list_video_display_error">Error. Video can\'t be displayed</string>
 </resources>

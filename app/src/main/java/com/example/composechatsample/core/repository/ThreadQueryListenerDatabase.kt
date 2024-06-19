@@ -3,6 +3,7 @@ package com.example.composechatsample.core.repository
 import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.plugin.ThreadQueryListener
 import com.example.composechatsample.core.Result
+import com.example.composechatsample.core.extensions.users
 
 internal class ThreadQueryListenerDatabase(
     private val messageRepository: MessageRepository,

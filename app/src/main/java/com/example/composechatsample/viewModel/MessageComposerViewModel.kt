@@ -7,7 +7,10 @@ import com.example.composechatsample.core.models.Command
 import com.example.composechatsample.core.models.LinkPreview
 import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.User
-import com.example.composechatsample.screen.MessageAction
+import com.example.composechatsample.screen.messages.MessageAction
+import com.example.composechatsample.screen.messages.MessageComposerState
+import com.example.composechatsample.screen.messages.MessageMode
+import com.example.composechatsample.screen.messages.ValidationError
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

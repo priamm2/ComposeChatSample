@@ -21,7 +21,7 @@ import com.example.composechatsample.data.ReplyAttachmentEntity.Companion.REPLY_
     ],
     indices = [Index("messageId")],
 )
-internal data class ReplyAttachmentEntity(
+data class ReplyAttachmentEntity(
     @ColumnInfo(index = true)
     @PrimaryKey
     val id: String,

@@ -6,7 +6,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.composechatsample.common.QueryConfig
 import com.example.composechatsample.core.ChatClient
+import com.example.composechatsample.core.Debouncer
+import com.example.composechatsample.core.QueryChannelsState
+import com.example.composechatsample.core.api.QueryChannelsRequest
 import com.example.composechatsample.core.models.Channel
 import com.example.composechatsample.core.models.ChannelMute
 import com.example.composechatsample.core.models.ConnectionState
@@ -15,10 +19,12 @@ import com.example.composechatsample.core.models.Filters
 import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.User
 import com.example.composechatsample.core.models.querysort.QuerySorter
+import com.example.composechatsample.core.plugin.ChannelsStateData
+import com.example.composechatsample.core.plugin.ChatEventHandlerFactory
 import com.example.composechatsample.core.toUnitCall
 import com.example.composechatsample.log.taggedLogger
-import com.example.composechatsample.screen.QueryConfig
-import com.example.composechatsample.screen.SearchQuery
+import com.example.composechatsample.screen.channels.ChannelsState
+import com.example.composechatsample.screen.channels.SearchQuery
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelChildren
@@ -33,6 +39,11 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
+import com.example.composechatsample.core.Result
+import com.example.composechatsample.screen.channels.Cancel
+import com.example.composechatsample.screen.channels.ChannelAction
+import com.example.composechatsample.screen.channels.ItemState
+
 
 class ChannelListViewModel(
     val chatClient: ChatClient,
@@ -217,7 +228,7 @@ class ChannelListViewModel(
             limit = limit,
         ).await()
         return when (result) {
-            is io.getstream.result.Result.Success -> {
+            is Result.Success -> {
                 logger.v { "[searchMessages] #$src; completed(messages.size: ${result.value.messages.size})" }
                 currentState.copy(
                     messages = currentState.messages + result.value.messages,
@@ -226,7 +237,7 @@ class ChannelListViewModel(
                     canLoadMore = result.value.messages.size >= limit,
                 )
             }
-            is io.getstream.result.Result.Failure -> {
+            is Result.Failure -> {
                 logger.e { "[searchMessages] #$src; failed: ${result.value}" }
                 currentState.copy(
                     isLoading = false,

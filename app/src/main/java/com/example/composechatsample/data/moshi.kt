@@ -6,7 +6,7 @@ import com.squareup.moshi.addAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 @OptIn(ExperimentalStdlibApi::class)
-internal val moshi: Moshi = Moshi.Builder()
+val moshi = Moshi.Builder()
     .addAdapter(DateAdapter())
     .add(KotlinJsonAdapterFactory())
     .add(MultiMapJsonAdapter.FACTORY)

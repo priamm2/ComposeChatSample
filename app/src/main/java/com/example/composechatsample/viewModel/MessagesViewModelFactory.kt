@@ -6,8 +6,12 @@ import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.composechatsample.DeletedMessageVisibility
+import com.example.composechatsample.common.ClipboardHandler
+import com.example.composechatsample.common.ClipboardHandlerImpl
 import com.example.composechatsample.common.DefaultStreamMediaRecorder
+import com.example.composechatsample.common.DefaultUserLookupHandler
 import com.example.composechatsample.common.StreamMediaRecorder
+import com.example.composechatsample.common.UserLookupHandler
 import com.example.composechatsample.core.ChatClient
 import com.example.composechatsample.core.state.ClientState
 import java.io.File

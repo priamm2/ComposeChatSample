@@ -1,12 +1,15 @@
 package com.example.composechatsample.core.state
 
 import com.example.composechatsample.core.cidToTypeAndId
+import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.Reaction
 import com.example.composechatsample.core.models.SyncStatus
 import com.example.composechatsample.core.models.User
 import com.example.composechatsample.core.plugin.DeleteReactionListener
 import com.example.composechatsample.core.plugin.LogicRegistry
 import com.example.composechatsample.core.removeMyReaction
+import com.example.composechatsample.core.Result
+import com.example.composechatsample.core.Error
 import java.util.Date
 
 internal class DeleteReactionListenerState(

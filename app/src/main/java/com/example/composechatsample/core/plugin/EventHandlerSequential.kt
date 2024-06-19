@@ -3,6 +3,8 @@ package com.example.composechatsample.core.plugin
 import androidx.annotation.VisibleForTesting
 import com.example.composechatsample.core.ChatEventListener
 import com.example.composechatsample.core.Disposable
+import com.example.composechatsample.core.addMember
+import com.example.composechatsample.core.addMembership
 import com.example.composechatsample.core.cidToTypeAndId
 import com.example.composechatsample.core.enrichIfNeeded
 import com.example.composechatsample.core.events.ChannelDeletedEvent
@@ -50,6 +52,7 @@ import com.example.composechatsample.core.events.UserStartWatchingEvent
 import com.example.composechatsample.core.events.UserStopWatchingEvent
 import com.example.composechatsample.core.events.UserUpdatedEvent
 import com.example.composechatsample.core.mergePartially
+import com.example.composechatsample.core.mergeReactions
 import com.example.composechatsample.core.models.ChannelCapabilities
 import com.example.composechatsample.core.models.Member
 import com.example.composechatsample.core.models.Message
@@ -58,11 +61,18 @@ import com.example.composechatsample.core.models.UserId
 import com.example.composechatsample.core.models.mergeChannelFromEvent
 import com.example.composechatsample.core.parameterizedLazy
 import com.example.composechatsample.core.realType
+import com.example.composechatsample.core.removeMember
+import com.example.composechatsample.core.removeMembership
 import com.example.composechatsample.core.repository.RepositoryFacade
 import com.example.composechatsample.core.repository.SocketEventCollector
 import com.example.composechatsample.core.state.ClientState
 import com.example.composechatsample.core.state.StateRegistry
 import com.example.composechatsample.core.toChannelUserRead
+import com.example.composechatsample.core.updateMember
+import com.example.composechatsample.core.updateMemberBanned
+import com.example.composechatsample.core.updateMembership
+import com.example.composechatsample.core.updateMembershipBanned
+import com.example.composechatsample.core.updateReads
 import com.example.composechatsample.log.StreamLog
 import com.example.composechatsample.log.taggedLogger
 import kotlinx.coroutines.CoroutineExceptionHandler

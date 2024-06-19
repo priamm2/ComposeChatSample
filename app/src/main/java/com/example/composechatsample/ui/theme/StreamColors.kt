@@ -23,9 +23,7 @@ data class StreamColors(
     public val errorAccent: Color,
     public val infoAccent: Color,
     public val highlight: Color,
-    @Deprecated("Use MessageTheme.backgroundColor instead", level = DeprecationLevel.ERROR)
     public val ownMessagesBackground: Color,
-    @Deprecated("Use MessageTheme.backgroundColor instead", level = DeprecationLevel.ERROR)
     public val otherMessagesBackground: Color,
     @Deprecated("Use MessageTheme.deletedBackgroundColor instead", level = DeprecationLevel.ERROR)
     public val deletedMessagesBackground: Color,

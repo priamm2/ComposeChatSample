@@ -8,6 +8,9 @@ import com.example.composechatsample.core.models.Message
 import com.example.composechatsample.core.models.SyncStatus
 import com.example.composechatsample.core.models.User
 import com.example.composechatsample.core.repository.MessageRepository
+import com.example.composechatsample.core.toEntity
+import com.example.composechatsample.core.toModel
+import com.example.composechatsample.core.toReplyEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
